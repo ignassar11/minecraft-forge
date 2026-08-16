@@ -1,52 +1,50 @@
-If you need help with your Forge server, join our Discord or forums:
-- https://discord.minecraftforge.net
-- https://forums.minecraftforge.net
+# minecraft-forge
 
-Quick start guide
-=================
-The steps will vary depending on if you're self-hosting or using a hosting provider:
+Forge server config for our modded Minecraft world (MC 26.2, Forge 65.1.1). This repo tracks server config and the mod list (via packwiz) — not the world save, logs, or mod jars themselves.
 
-Self-hosting
-------------
-On Windows, start the server by double-clicking the run.bat file.
-On Linux or macOS, start the server by running the run.sh script.
+## Server setup
 
-- To change the amount of RAM allocated to the game, edit the user_jvm_args.txt file.
-- To hide the GUI, edit the run.bat or run.sh file and refer to its instructions.
-- To change server settings, edit the server.properties file and config files in the config folder.
+1. Clone the repo
+2. Download the Forge server installer for `26.2-65.1.1` from [files.minecraftforge.net](https://files.minecraftforge.net/net/minecraftforge/forge/index_26.2.html) and run:
+   ```bash
+   java -jar forge-26.2-65.1.1-installer.jar --installServer
+   ```
+3. Install mods (see below)
+4. Start the server:
+   ```bash
+   ./run.sh nogui
+   ```
 
-Hosting providers
------------------
-The steps will vary depending on your hosting provider and what panel they use.
+## Installing mods
 
-Some providers require you to install Forge through an option in their panel, others require you to upload the files
-yourself and select a jar file. It's recommended to install Forge through the panel if possible, as it'll be easier.
+Mods aren't stored in git — they're fetched from the pack manifest with the bootstrap installer.
 
-If you need to select a jar file, upload your Forge server install (all files in the folder this readme is in) and
-select the shim jar file.
+```bash
+java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/ignassar11/minecraft-forge/main/pack.toml
+```
 
-If you're unsure, contact your hosting provider's or server panel's support.
+This downloads everything into `mods/`, matching the current pack exactly. Run it again anytime the pack updates.
 
-Performance tuning
-==================
-Here are some tips and advice to improve server performance:
+**Client players**: run the same jar, but `cd` into your `.minecraft` folder first (the installer populates `mods/` relative to wherever you run it from), and add `-s client` to skip any server-only mods:
 
-- Use the latest version of MC, Forge and mods when possible. Newer versions usually have performance improvements.
+```bash
+cd ~/.minecraft   # Windows: cd %appdata%\.minecraft
+java -jar packwiz-installer-bootstrap.jar -s client https://raw.githubusercontent.com/ignassar11/minecraft-forge/main/pack.toml
+```
 
-- Turn down the view distance and simulation distance in the server.properties file. Simulation distance should be the
-  same as or marginally lower than view distance.
+## Adding mods (maintainer only)
 
-- Don't allocate excessive amounts of RAM to the game - especially if self-hosting. Too much can cause lag, as it could
-  cause resource contention with other things running on the same machine, such as the OS, drivers and other apps.
+Requires [packwiz](https://packwiz.infra.link/) installed locally.
 
-- When using custom JVM args, test the before and after. There isn't a one-size-fits-all solution, and some settings
-  might make things worse with your specific hardware and combination of mods.
+```bash
+packwiz mr install <mod-slug>   # from Modrinth
+packwiz cf install <mod-slug>   # from CurseForge
+```
 
-- Use a profiler (such as the Spark mod by lucko) to find the cause of lag. Some mods may be poorly optimised or simply
-  do a lot of things. When you find the cause, you may want to disable that specific part of the mod in its config file,
-  check for an update, report the issue to the mod author, find an alternative and/or remove the mod entirely.
+## World backups
 
-- Contrary to popular belief, modern Minecraft isn't single-threaded. After a certain amount of RAM, you may get better
-  performance from adding more fast CPU cores rather than adding more RAM.
+World saves aren't in git. Back them up separately:
 
-For more help with performance, please ask on the forums or Discord.
+```bash
+tar -czf world-backup-$(date +%Y%m%d-%H%M).tar.gz world/ world_nether/ world_the_end/
+```
