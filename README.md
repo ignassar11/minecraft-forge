@@ -17,7 +17,7 @@ Forge server config for our modded Minecraft world (MC 26.2, Forge 65.1.1). This
 
 ## Installing mods
 
-Mods aren't stored in git — they're fetched from the pack manifest with the bootstrap installer.
+Mods aren't stored in git — they're fetched from the pack manifest using `packwiz-installer-bootstrap.jar`, which is included in this repo.
 
 ```bash
 java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/ignassar11/minecraft-forge/main/pack.toml
@@ -25,7 +25,7 @@ java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/igna
 
 This downloads everything into `mods/`, matching the current pack exactly. Run it again anytime the pack updates.
 
-**Client players**: run the same jar, but `cd` into your `.minecraft` folder first (the installer populates `mods/` relative to wherever you run it from), and add `-s client` to skip any server-only mods:
+**Client players**: copy `packwiz-installer-bootstrap.jar` from this repo into your `.minecraft` folder (or reference it by full path), then run the same command with `-s client` to skip any server-only mods:
 
 ```bash
 cd ~/.minecraft   # Windows: cd %appdata%\.minecraft
