@@ -52,5 +52,8 @@ tar -czf backups/world-backup-$(date +%Y%m%d-%H%M).tar.gz world/
 ## Restoring a backup
 
 ```bash
+rm -rf world/
 tar -xzf backups/world-backup-<timestamp>.tar.gz
 ```
+
+STAY ALERT! THIS WILL REMOVE THE CURRENT WORLD AND INITIALIZE THE BACKUP!
