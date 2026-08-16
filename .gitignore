@@ -1,0 +1,13 @@
+world/
+world_nether/
+world_the_end/
+logs/
+crash-reports/
+libraries/
+mods/
+*.jar
+*.log
+session.lock
+usercache.json
+.idea/
+banned-ips.json
