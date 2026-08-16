@@ -11,3 +11,5 @@ session.lock
 usercache.json
 .idea/
 banned-ips.json
+world-backup-*.tar.gz
+backups/

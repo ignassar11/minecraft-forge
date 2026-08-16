@@ -43,8 +43,14 @@ packwiz cf install <mod-slug>   # from CurseForge
 
 ## World backups
 
-World saves aren't in git. Back them up separately:
+World saves aren't in git. `backups/` is gitignored and lives inside this project folder.
 
 ```bash
-tar -czf world-backup-$(date +%Y%m%d-%H%M).tar.gz world/ world_nether/ world_the_end/
+tar -czf backups/world-backup-$(date +%Y%m%d-%H%M).tar.gz world/
+```
+
+## Restoring a backup
+
+```bash
+tar -xzf backups/world-backup-<timestamp>.tar.gz
 ```
