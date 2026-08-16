@@ -1,0 +1,13 @@
+name = "5-weekly"
+author = "Ignas"
+version = "1.0.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "b29ec821212f58c85505e5026d7c3677f57ec28ef774f3af1a9b0fa7a863f590"
+
+[versions]
+forge = "65.1.1"
+minecraft = "26.2"
