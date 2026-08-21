@@ -28,7 +28,7 @@ curl -L -o packwiz-installer-bootstrap.jar https://github.com/packwiz/packwiz-in
 ## 4. Install mods (server)
 
 ```bash
-java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/ignassar11/minecraft-forge/main/pack.toml
+java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/ignassar11/minecraft-forge/master/pack.toml
 ```
 
 Downloads everything into `mods/`, matching the current pack. Re-run anytime the pack updates.
@@ -45,7 +45,7 @@ Download the bootstrap jar the same way as step 3, then run from inside `.minecr
 
 ```bash
 cd ~/.minecraft   # Windows: cd %appdata%\.minecraft
-java -jar packwiz-installer-bootstrap.jar -s client https://raw.githubusercontent.com/ignassar11/minecraft-forge/main/pack.toml
+java -jar packwiz-installer-bootstrap.jar -s client https://raw.githubusercontent.com/ignassar11/minecraft-forge/master/pack.toml
 ```
 
 ## Adding mods (maintainer only)
