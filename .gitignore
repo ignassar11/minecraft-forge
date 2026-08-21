@@ -4,7 +4,7 @@ world_the_end/
 logs/
 crash-reports/
 libraries/
-mods/
+mods/*.jar
 *.jar
 *.log
 session.lock
