@@ -1,16 +1,13 @@
 world/
-world_nether/
-world_the_end/
 logs/
 crash-reports/
 libraries/
-mods/*.jar
 *.jar
 *.log
 session.lock
 usercache.json
+usernamecache.json
 .idea/
 banned-ips.json
-world-backup-*.tar.gz
 backups/
 packwiz.json
