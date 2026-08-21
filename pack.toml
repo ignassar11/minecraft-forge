@@ -1,4 +1,4 @@
-name = "5-weekly"
+name = "default"
 author = "Ignas"
 version = "1.0.0"
 pack-format = "packwiz:1.1.0"
@@ -6,7 +6,7 @@ pack-format = "packwiz:1.1.0"
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "d47eb23270c58e310fa17ca69239df2a169d9b609cb27a85364655ebd39f01d3"
+hash = "7b81c9e9d9e6e21a9865a2dded0dfd77e7683d679b98fe5b0114eaed9a31f17e"
 
 [versions]
 forge = "65.1.1"

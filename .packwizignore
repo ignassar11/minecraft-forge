@@ -22,4 +22,7 @@ run.sh
 run.bat
 user_jvm_args.txt
 backup.sh
+install-mods.ps1
+install-mods.sh
 config/
+packwiz.json
