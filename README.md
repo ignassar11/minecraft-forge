@@ -17,23 +17,25 @@ Download the installer for `26.2-65.1.1` (or any other version according to bran
 java -jar forge-26.2-65.1.1-installer.jar --installServer
 ```
 
-## 3. Get the packwiz bootstrap installer
+## 3. Install mods (server)
 
-Not included in this repo — download it:
+Use the included script — it grabs the packwiz bootstrap installer if needed and installs mods from the current branch's pack:
 
 ```bash
-curl -L -o packwiz-installer-bootstrap.jar https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
+chmod +x install-mods.sh
+./install-mods.sh server <branch>
 ```
 
-## 4. Install mods (server)
+Windows:
 
-```bash
-java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/ignassar11/minecraft-forge/master/pack.toml
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+.\install-mods.ps1 server <branch>
 ```
 
 Downloads everything into `mods/`, matching the current pack. Re-run anytime the pack updates.
 
-## 5. Start the server
+## 4. Start the server
 
 ```bash
 ./run.sh nogui
@@ -41,11 +43,17 @@ Downloads everything into `mods/`, matching the current pack. Re-run anytime the
 
 ## Installing mods (client players)
 
-Download the bootstrap jar the same way as step 3, then run from inside `.minecraft`:
+Same script, `client` instead of `server` — installs into `.minecraft` and skips server-only mods:
 
 ```bash
-cd ~/.minecraft   # Windows: cd %appdata%\.minecraft
-java -jar packwiz-installer-bootstrap.jar -s client https://raw.githubusercontent.com/ignassar11/minecraft-forge/master/pack.toml
+./install-mods.sh client <branch>
+```
+
+Windows:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+.\install-mods.ps1 client <branch>
 ```
 
 ## Adding mods (maintainer only)
@@ -56,6 +64,24 @@ Requires [packwiz](https://packwiz.infra.link/) installed locally.
 packwiz mr install <mod-slug>   # from Modrinth
 packwiz cf install <mod-slug>   # from CurseForge
 ```
+
+Commit and push `mods/`, `index.toml`, and `pack.toml` afterward.
+
+## Switching mod loader or version
+
+Forge, Fabric, and NeoForge can't run the same mods and can't mix on one server. Each gets its own branch. Shared config (`server.properties`, `whitelist.json`, `ops.json`, `banned-*.json`) lives on `master`; loader-specific files (`pack.toml`, `mods/`, run scripts) live per branch.
+
+```bash
+git checkout -b fabric-26.2
+```
+
+Point the install scripts at the branch you want:
+
+```bash
+./install-mods.sh client fabric-26.2
+```
+
+A world built on one loader's mods won't load cleanly on another — start fresh when switching unless the current world is still unmodded.
 
 ## World backups
 
