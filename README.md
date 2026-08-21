@@ -1,31 +1,47 @@
 # minecraft-forge
 
-Forge server config for our modded Minecraft world (MC 26.2, Forge 65.1.1). This repo tracks server config and the mod list (via packwiz) — not the world save, logs, or mod jars themselves.
+Forge server config for modded Minecraft world. This repo tracks server config and the mod list (via packwiz) — not the world save, logs, mod jars, or the installer jar itself.
 
-## Server setup
+## 1. Clone the repo
 
-1. Clone the repo
-2. Download the Forge server installer for `26.2-65.1.1` from [files.minecraftforge.net](https://files.minecraftforge.net/net/minecraftforge/forge/index_26.2.html) and run:
-   ```bash
-   java -jar forge-26.2-65.1.1-installer.jar --installServer
-   ```
-3. Install mods (see below)
-4. Start the server:
-   ```bash
-   ./run.sh nogui
-   ```
+```bash
+git clone https://github.com/ignassar11/minecraft-forge.git
+cd minecraft-forge
+```
 
-## Installing mods
+## 2. Install the Forge server
 
-Mods aren't stored in git — they're fetched from the pack manifest using `packwiz-installer-bootstrap.jar`, which is included in this repo.
+Download the installer for `26.2-65.1.1` (or any other version according to branching) from [files.minecraftforge.net](https://files.minecraftforge.net/net/minecraftforge/forge/index_26.2.html), then:
+
+```bash
+java -jar forge-26.2-65.1.1-installer.jar --installServer
+```
+
+## 3. Get the packwiz bootstrap installer
+
+Not included in this repo — download it:
+
+```bash
+curl -L -o packwiz-installer-bootstrap.jar https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
+```
+
+## 4. Install mods (server)
 
 ```bash
 java -jar packwiz-installer-bootstrap.jar https://raw.githubusercontent.com/ignassar11/minecraft-forge/main/pack.toml
 ```
 
-This downloads everything into `mods/`, matching the current pack exactly. Run it again anytime the pack updates.
+Downloads everything into `mods/`, matching the current pack. Re-run anytime the pack updates.
 
-**Client players**: copy `packwiz-installer-bootstrap.jar` from this repo into your `.minecraft` folder (or reference it by full path), then run the same command with `-s client` to skip any server-only mods:
+## 5. Start the server
+
+```bash
+./run.sh nogui
+```
+
+## Installing mods (client players)
+
+Download the bootstrap jar the same way as step 3, then run from inside `.minecraft`:
 
 ```bash
 cd ~/.minecraft   # Windows: cd %appdata%\.minecraft
