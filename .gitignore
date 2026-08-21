@@ -13,3 +13,4 @@ usercache.json
 banned-ips.json
 world-backup-*.tar.gz
 backups/
+packwiz.json
