@@ -2,5 +2,5 @@ hash-format = "sha256"
 
 [[files]]
 file = "mods/xaeros-minimap.pw.toml"
-hash = "9e8d915a6ef3cdae049493ebaa64e4da2016eff7c5bb2a58052607bfd9a5dbca"
+hash = "be6d173af48a5ccc0cd8e42261db04c89b4527db01bbff151b6b7a8b0970dcc4"
 metafile = true
